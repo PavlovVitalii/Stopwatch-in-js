@@ -19,47 +19,6 @@
         ><button class="reset">reset</button>
       </div>
     </div>
-    <script>
-      const displayHouers = document.querySelector(".houers");
-      const displayMinutes = document.querySelector(".minutes");
-      const displaySeconds = document.querySelector(".seconds");
-      const displayMilliseconds = document.querySelector(".milliseconds");
-      const startBtn = document.querySelector(".start");
-      const stopBtn = document.querySelector(".stop");
-      const resetBtn = document.querySelector(".reset");
-      let houers = 0;
-      let minutes = 0;
-      let seconds = 0;
-      let milliseconds = 0;
-
-      function start() {
-          setInterval(() => {
-
-              displayMilliseconds.innerHTML = milliseconds < 10 ? "0" + milliseconds : milliseconds;
-
-
-          }, 100);
-      }
-
-      function millisecondsIteration() {
-        milliseconds++;
-        if (milliseconds === 10 ) {
-                milliseconds = 0;
-                seconds++;
-                displaySeconds.innerHTML = seconds < 10 ? "0" + seconds:seconds;
-              }
-      }
-
-      function secondsIteration() {
-        seconds++;
-        if (seconds === 60) {
-            seconds = 0;
-            minutes++;
-            displayMinutes.innerHTML = minutes < 10 ? "0"+minutes : minutes
-        }
-      }
-
-      startBtn.addEventListener("click",()=>start());
-    </script>
+    <script src="stopWatch.js"></script>
   </body>
 </html>
