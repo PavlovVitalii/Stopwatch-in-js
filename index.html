@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="flex">
+    <div class="wraper flex">
+      <div class="time flex">
+        <span class="houers"> 00 </span><span>:</span
+        ><span class="minutes">00</span><span>:</span
+        ><span class="seconds">00</span><span>:</span
+        ><span class="milliseconds">00</span>
+      </div>
+      <div class="buttons">
+        <button class="start">start</button><button class="stop">stop</button
+        ><button class="reset">reset</button>
+      </div>
+    </div>
+    <script>
+      const displayHouers = document.querySelector(".houers");
+      const displayMinutes = document.querySelector(".minutes");
+      const displaySeconds = document.querySelector(".seconds");
+      const displayMilliseconds = document.querySelector(".milliseconds");
+      const startBtn = document.querySelector(".start");
+      const stopBtn = document.querySelector(".stop");
+      const resetBtn = document.querySelector(".reset");
+      let houers = 0;
+      let minutes = 0;
+      let seconds = 0;
+      let milliseconds = 0;
+
+      function start() {
+          setInterval(() => {
+              milliseconds++;
+              displayMilliseconds.innerHTML = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+          }, 100);
+      }
+
+      startBtn.addEventListener("click",()=>{start()});
+
+    </script>
+  </body>
 </html>
