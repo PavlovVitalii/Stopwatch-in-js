@@ -34,13 +34,32 @@
 
       function start() {
           setInterval(() => {
-              milliseconds++;
+
               displayMilliseconds.innerHTML = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+
+
           }, 100);
       }
 
-      startBtn.addEventListener("click",()=>{start()});
+      function millisecondsIteration() {
+        milliseconds++;
+        if (milliseconds === 10 ) {
+                milliseconds = 0;
+                seconds++;
+                displaySeconds.innerHTML = seconds < 10 ? "0" + seconds:seconds;
+              }
+      }
 
+      function secondsIteration() {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+            displayMinutes.innerHTML = minutes < 10 ? "0"+minutes : minutes
+        }
+      }
+
+      startBtn.addEventListener("click",()=>start());
     </script>
   </body>
 </html>
