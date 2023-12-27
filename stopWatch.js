@@ -20,6 +20,7 @@ function start() {
 
 function stop() {
   clearInterval(intervalId);
+  setLocal();
 }
 
 function reset() {
@@ -27,10 +28,8 @@ function reset() {
   minutes = 0;
   seconds = 0;
   milliseconds = 0;
-  display(displayMilliseconds, milliseconds);
-  display(displaySeconds, seconds);
-  display(displayMinutes, minutes);
-  display(displayHouers, houers);
+  displayAll();
+  setLocal();
 }
 
 function millisecondsIteration() {
@@ -64,6 +63,28 @@ function display(span, value) {
   span.innerHTML = value < 10 ? "0" + value : value;
 }
 
+function displayAll() {
+  display(displayMilliseconds, milliseconds);
+  display(displaySeconds, seconds);
+  display(displayMinutes, minutes);
+  display(displayHouers, houers);
+}
+
+function setLocal() {
+  localStorage.setItem("milliseconds", milliseconds);
+  localStorage.setItem("seconds", seconds);
+  localStorage.setItem("minutes", minutes);
+  localStorage.setItem("houers", houers);
+}
+
 startBtn.addEventListener("click", () => start());
 stopBtn.addEventListener("click", () => stop());
 resetBtn.addEventListener("click", () => reset());
+
+window.onload = () => {
+  milliseconds = localStorage.getItem("milliseconds");
+  seconds = localStorage.getItem("seconds");
+  minutes = localStorage.getItem("minutes");
+  houers = localStorage.getItem("houers");
+  displayAll();
+};
