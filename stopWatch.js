@@ -5,17 +5,32 @@ const displayMilliseconds = document.querySelector(".milliseconds");
 const startBtn = document.querySelector(".start");
 const stopBtn = document.querySelector(".stop");
 const resetBtn = document.querySelector(".reset");
+let intervalId = null;
 let houers = 0;
 let minutes = 0;
 let seconds = 0;
 let milliseconds = 0;
 
 function start() {
-  setInterval(() => {
+  intervalId = setInterval(() => {
     millisecondsIteration();
-    displayMilliseconds.innerHTML =
-      milliseconds < 10 ? "0" + milliseconds : milliseconds;
+    display(displayMilliseconds, milliseconds);
   }, 100);
+}
+
+function stop() {
+  clearInterval(intervalId);
+}
+
+function reset() {
+  houers = 0;
+  minutes = 0;
+  seconds = 0;
+  milliseconds = 0;
+  display(displayMilliseconds, milliseconds);
+  display(displaySeconds, seconds);
+  display(displayMinutes, minutes);
+  display(displayHouers, houers);
 }
 
 function millisecondsIteration() {
@@ -23,7 +38,7 @@ function millisecondsIteration() {
   if (milliseconds === 10) {
     milliseconds = 0;
     secondsIteration();
-    displaySeconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+    display(displaySeconds, seconds);
   }
 }
 
@@ -32,7 +47,7 @@ function secondsIteration() {
   if (seconds === 60) {
     seconds = 0;
     minutesIteration();
-    displayMinutes.innerHTML = minutes < 10 ? "0" + minutes : minutes;
+    display(displayMinutes, minutes);
   }
 }
 
@@ -41,8 +56,14 @@ function minutesIteration() {
   if (minutes === 60) {
     minutes = 0;
     houers++;
-    displayHouers.innerHTML = houers < 10 ? "0" + houers : houers;
+    display(displayHouers, houers);
   }
 }
 
+function display(span, value) {
+  span.innerHTML = value < 10 ? "0" + value : value;
+}
+
 startBtn.addEventListener("click", () => start());
+stopBtn.addEventListener("click", () => stop());
+resetBtn.addEventListener("click", () => reset());
