@@ -88,3 +88,7 @@ window.onload = () => {
   houers = localStorage.getItem("houers");
   displayAll();
 };
+
+window.onunload = ()=>{
+  setLocal();
+}
